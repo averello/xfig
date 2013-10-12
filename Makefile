@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -g3 -pedantic -std=c99 -I${INC} 
-LDFLAGS = 
+LDFLAGS = -L$(LIB) -lxfig
 BIN = bin
 INC = include
 OBJ = obj
@@ -35,7 +35,7 @@ all: directories compileall
 # +-------------+
 
 TEST1 = main
-test1: directories ${BIN}/${TEST1}
+test1: directories libstatic ${BIN}/${TEST1}
 	@echo "**** Testing ${TEST1}"
 	@${BIN}/${TEST5}
 	@echo "---- end of ${TEST1}"
@@ -43,7 +43,7 @@ test1: directories ${BIN}/${TEST1}
 
 libstatic: directories $(LIB)/lib$(LIB_NAME).a
 
-valgrind% : $(BIN)/test%
+valgrind% : $(BIN)/%
 	@valgrind  --track-origins=yes --leak-check=full --show-reachable=yes $<
 
 
@@ -69,6 +69,9 @@ ${OBJ}/%.o : ${SRC}/%.c
 
 ${BIN}/% : ${OBJ}/%.o
 	${CC} -o $@ $< ${LDFLAGS}
+
+$(BIN)/main : $(OBJ)/main.o $(LIB)/lib$(LIB_NAME).a
+	$(CC) $(OUTPUT_OPTION) $(LDFLAGS) $<
 
 ${LIB}/lib${LIB_NAME}.a : $(OBJ)/memory_management.o $(OBJ)/Point.o $(OBJ)/LinkedList.o $(OBJ)/ExXfig.o
 	${AR} r ${LIB}/lib${LIB_NAME}.a $?
