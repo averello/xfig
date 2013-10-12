@@ -11,20 +11,18 @@
 #include "ExXfig.h"
 
 
-//void (*tabular)[] = {
-//	NULL
-//};
-
 typedef void(*FunctionPointer)(void);
 
 void testPoint();
 void testLinkedList();
+void testXfig();
 
 int main(int argc, const char * argv[])
 {
 	FunctionPointer tests[] = {
 		testPoint,
-		testLinkedList
+		testLinkedList,
+		testXfig
 	};
 	
 	for (int i=0; i<sizeof(tests)/sizeof(FunctionPointer); i++) {
@@ -53,12 +51,18 @@ void testLinkedList() {
 	assert(list->isa.retainCount == 1);
 	assert(point->isa.retainCount == 2);
 	assert(list->data == point);
-	
-	list = linkedListAppendData(list, createPoint(3, 3));
-	
-	release(list->data);
 	release(point);
+	
+	point = createPoint(3, 3);
+	list = linkedListAppendData(list, point);
+	release(point);
+
 	release(list);
 	puts("testLinkedList -- successfull");
 }
+
+void testXfig() {
+
+}
+
 

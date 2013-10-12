@@ -19,8 +19,8 @@ Point *createPoint(int x, int y) {
 	point->isa = _objectPrototype;
 	point = retain(point);
 	
-	point->x = 5;
-	point->y = 5;
+	point->x = x;
+	point->y = y;
 	return point;
 }
 

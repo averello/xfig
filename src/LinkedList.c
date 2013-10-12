@@ -40,14 +40,9 @@ static void _LinkedListDestroy(void *l) {
 	LinkedList *restrict list = l;
 	if (list == NULL)
 		return;
+
+	list->data = (release(list->data), NULL);
+	release(list->next);
 	
-	while (list != NULL) {
-		LinkedList *tmp = list;
-		release(tmp->data);
-		list = list->next;
-		if (tmp != l)
-			release(tmp);
-		tmp = NULL;
-	}
 	return;
 }

@@ -17,8 +17,8 @@
 
 static const char *const __prealamble = "#FIG 3.2\nLandscape\nCenter\nMetric\nA4\n100.00\nSingle\n-2\n1200 2\n";
 
-const static short XFIG_DEPTH = 50;
-const static short XFIF_FIXED_DATA = 1;
+static const short XFIG_DEPTH = 50;
+static const short XFIF_FIXED_DATA = 1;
 #define XFIG_DIRECTION 1
 #define XFIG_NUMBER_OF_POINTS 5
 #define XFIG_TEXT_FLAG 4

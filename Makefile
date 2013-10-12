@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -g3 -pedantic -std=c99 -I${INC} 
+CFLAGS = -Wall -Wextra -g3 -pedantic -std=c99 -I${INC} -D_XOPEN_SOURCE=700
 LDFLAGS = -L$(LIB) -lxfig
 BIN = bin
 INC = include
