@@ -26,9 +26,6 @@ struct _point {
 	int x, y;	/* Coordonnées du point */
 };
 
-
-#pragma mark -
-#pragma mark Point Functions
 /*
  * Point Functions
  */
