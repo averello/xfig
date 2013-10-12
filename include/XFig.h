@@ -234,7 +234,7 @@ struct _xfigObject {
 	
 };
 
-typedef struct _xfigObject Xfig;
+typedef struct _xfigObject XFig;
 
 
 
@@ -242,7 +242,7 @@ typedef struct _xfigObject Xfig;
  * Xfig Functions
  */
 
-Xfig *XFCreateCycle(XFLineStyle lineStyle,
+XFig *XFCreateCycle(XFLineStyle lineStyle,
 					short thickness,
 					XFColor color,
 					XFColor fillColor,
@@ -252,7 +252,7 @@ Xfig *XFCreateCycle(XFLineStyle lineStyle,
 					const Point *center,
 					short ray);
 
-Xfig *XFCreateEllipse(XFLineStyle lineStyle,
+XFig *XFCreateEllipse(XFLineStyle lineStyle,
 					  short thickness,
 					  XFColor color,
 					  XFColor fillColor,
@@ -267,7 +267,7 @@ Xfig *XFCreateEllipse(XFLineStyle lineStyle,
  * The number of arguments passed in parameters in ... must be
  * terminated by NULL and must be equal to numberOfPoints.
  */
-Xfig *XFCreateLine(XFLineStyle lineStyle,
+XFig *XFCreateLine(XFLineStyle lineStyle,
 				   short thickness,
 				   XFColor color,
 				   XFColor fillColor,
@@ -278,7 +278,7 @@ Xfig *XFCreateLine(XFLineStyle lineStyle,
 				   short numberOfPoints,
 				   ...);
 
-Xfig *XFCreateRectangle(XFLineStyle lineStyle,
+XFig *XFCreateRectangle(XFLineStyle lineStyle,
 						short thickness,
 						XFColor color,
 						XFColor fillColor,
@@ -293,7 +293,7 @@ Xfig *XFCreateRectangle(XFLineStyle lineStyle,
  * The number of arguments passed in parameters in ... must be
  * terminated by NULL and must be equal to numberOfPoints.
  */
-Xfig *XFCreatePolygone(XFLineStyle lineStyle,
+XFig *XFCreatePolygone(XFLineStyle lineStyle,
 					   short thickness,
 					   XFColor color,
 					   XFColor fillColor,
@@ -301,7 +301,7 @@ Xfig *XFCreatePolygone(XFLineStyle lineStyle,
 					   float dotSpace,
 					   ...);
 
-Xfig *XFCreateText(XFTextAlignement alignement,
+XFig *XFCreateText(XFTextAlignement alignement,
 				   XFColor color,
 				   XFTextFont font,
 				   short fontSize,
@@ -313,8 +313,7 @@ Xfig *XFCreateText(XFTextAlignement alignement,
 				   size_t length);
 
 void XFWritePrealamble(FILE *flux); /* Writes the Xfig format prealamble in the FILE* flux */
-void XFWriteListOfXfig(LinkedList *restrict list, FILE *flux); /* Writes a LinkedList containing Xfig objects to flux. */
-void XFWrite(FILE *flux, const Xfig*restrict xfig); /* Write any Xfig object to flux. */
+void XFWriteListOfXFig(LinkedList *restrict list, FILE *flux); /* Writes a LinkedList containing Xfig objects to flux. */
+void XFWrite(FILE *flux, const XFig*restrict xfig); /* Write any Xfig object to flux. */
 
 #endif
-
