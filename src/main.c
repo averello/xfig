@@ -17,14 +17,14 @@
 
 typedef void(*FunctionPointer)(void);
 
-void test1();
-void test2();
+void testPoint();
+void testLinkedList();
 
 int main(int argc, const char * argv[])
 {
 	FunctionPointer tests[] = {
-		test1,
-		test2
+		testPoint,
+		testLinkedList
 	};
 	
 	for (int i=0; i<sizeof(tests)/sizeof(FunctionPointer); i++) {
@@ -34,18 +34,31 @@ int main(int argc, const char * argv[])
 }
 
 
-void test1() {
+void testPoint() {
 	Point *point = createPoint(5, 5);
 	assert(point != NULL);
+	assert(point->isa.retainCount == 1);
 	
 	assert(point->x == 5);
 	assert(point->y == 5);
 	
 	release(point);
-	puts("test1 -- successfull");
+	puts("testPoint -- successfull");
 }
 
-void test2() {
-	puts("test2");
+void testLinkedList() {
+	Point *point = createPoint(2, 2);
+	LinkedList *list = linkedListAppendData(NULL, point);
+	assert(NULL != list);
+	assert(list->isa.retainCount == 1);
+	assert(point->isa.retainCount == 2);
+	assert(list->data == point);
+	
+	list = linkedListAppendData(list, createPoint(3, 3));
+	
+	release(list->data);
+	release(point);
+	release(list);
+	puts("testPoint -- successfull");
 }
 
