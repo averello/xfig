@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		DE77A31A1809611D003C281D /* ExXfig.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3191809611D003C281D /* ExXfig.h */; };
 		DE77A31C18096124003C281D /* ExXfig.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A31B18096124003C281D /* ExXfig.c */; };
-		DE77A326180961EE003C281D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A325180961EE003C281D /* main.c */; };
-		DE77A328180961EE003C281D /* xfi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE77A327180961EE003C281D /* xfi.1 */; };
-		DE77A32F180962E9003C281D /* Point.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A32E180962E9003C281D /* Point.h */; };
-		DE77A331180962EE003C281D /* Point.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A330180962EE003C281D /* Point.c */; };
 		DE77A3331809639A003C281D /* memory_management.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3321809639A003C281D /* memory_management.h */; };
 		DE77A335180964F2003C281D /* memory_management.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A334180964F2003C281D /* memory_management.c */; };
 		DE77A3371809690B003C281D /* LinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3361809690B003C281D /* LinkedList.h */; };
 		DE77A33918096989003C281D /* LinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A33818096989003C281D /* LinkedList.c */; };
+		DE77A33C1809C15C003C281D /* libxfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE77A30918095FBD003C281D /* libxfig.a */; };
+		DE77A33E1809C293003C281D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A33D1809C293003C281D /* main.c */; };
+		DE77A3401809C2DA003C281D /* Point.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A33F1809C2DA003C281D /* Point.c */; };
+		DE77A3421809C2E1003C281D /* Point.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3411809C2E1003C281D /* Point.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				DE77A328180961EE003C281D /* xfi.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -47,16 +46,14 @@
 		DE77A3151809603B003C281D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		DE77A3191809611D003C281D /* ExXfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExXfig.h; path = include/ExXfig.h; sourceTree = "<group>"; };
 		DE77A31B18096124003C281D /* ExXfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ExXfig.c; path = src/ExXfig.c; sourceTree = "<group>"; };
-		DE77A31D180961CD003C281D /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
 		DE77A323180961EE003C281D /* xfi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xfi; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE77A325180961EE003C281D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		DE77A327180961EE003C281D /* xfi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xfi.1; sourceTree = "<group>"; };
-		DE77A32E180962E9003C281D /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		DE77A330180962EE003C281D /* Point.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Point.c; sourceTree = "<group>"; };
 		DE77A3321809639A003C281D /* memory_management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory_management.h; path = include/memory_management.h; sourceTree = "<group>"; };
 		DE77A334180964F2003C281D /* memory_management.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = memory_management.c; path = src/memory_management.c; sourceTree = "<group>"; };
 		DE77A3361809690B003C281D /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedList.h; path = include/LinkedList.h; sourceTree = "<group>"; };
 		DE77A33818096989003C281D /* LinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LinkedList.c; path = src/LinkedList.c; sourceTree = "<group>"; };
+		DE77A33D1809C293003C281D /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = SOURCE_ROOT; };
+		DE77A33F1809C2DA003C281D /* Point.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Point.c; path = src/Point.c; sourceTree = "<group>"; };
+		DE77A3411809C2E1003C281D /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Point.h; path = include/Point.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE77A33C1809C15C003C281D /* libxfig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +106,9 @@
 		DE77A317180960F1003C281D /* include */ = {
 			isa = PBXGroup;
 			children = (
-				DE77A32E180962E9003C281D /* Point.h */,
-				DE77A3191809611D003C281D /* ExXfig.h */,
 				DE77A3321809639A003C281D /* memory_management.h */,
+				DE77A3411809C2E1003C281D /* Point.h */,
+				DE77A3191809611D003C281D /* ExXfig.h */,
 				DE77A3361809690B003C281D /* LinkedList.h */,
 			);
 			name = include;
@@ -119,10 +117,9 @@
 		DE77A318180960F8003C281D /* src */ = {
 			isa = PBXGroup;
 			children = (
-				DE77A330180962EE003C281D /* Point.c */,
-				DE77A31B18096124003C281D /* ExXfig.c */,
-				DE77A31D180961CD003C281D /* main.c */,
 				DE77A334180964F2003C281D /* memory_management.c */,
+				DE77A33F1809C2DA003C281D /* Point.c */,
+				DE77A31B18096124003C281D /* ExXfig.c */,
 				DE77A33818096989003C281D /* LinkedList.c */,
 			);
 			name = src;
@@ -131,8 +128,7 @@
 		DE77A324180961EE003C281D /* xfi */ = {
 			isa = PBXGroup;
 			children = (
-				DE77A325180961EE003C281D /* main.c */,
-				DE77A327180961EE003C281D /* xfi.1 */,
+				DE77A33D1809C293003C281D /* main.c */,
 			);
 			path = xfi;
 			sourceTree = "<group>";
@@ -146,8 +142,8 @@
 			files = (
 				DE77A31A1809611D003C281D /* ExXfig.h in Headers */,
 				DE77A3371809690B003C281D /* LinkedList.h in Headers */,
-				DE77A32F180962E9003C281D /* Point.h in Headers */,
 				DE77A3331809639A003C281D /* memory_management.h in Headers */,
+				DE77A3421809C2E1003C281D /* Point.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE77A33918096989003C281D /* LinkedList.c in Sources */,
-				DE77A331180962EE003C281D /* Point.c in Sources */,
 				DE77A31C18096124003C281D /* ExXfig.c in Sources */,
+				DE77A3401809C2DA003C281D /* Point.c in Sources */,
 				DE77A335180964F2003C281D /* memory_management.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,7 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE77A326180961EE003C281D /* main.c in Sources */,
+				DE77A33E1809C293003C281D /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

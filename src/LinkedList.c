@@ -10,20 +10,22 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
+static void _LinkedListDestroy(void *);
+
 LinkedList *linkedListAppendData(LinkedList *list, void *data) {
 	LinkedList *restrict ns = (LinkedList *)calloc(sizeof(LinkedList), 1);
 	if (NULL == ns)
 		return NULL;
 	
 	ns->isa = _objectPrototype;
+	ns->isa.destroy = _LinkedListDestroy;
 	ns = retain(ns);
 	
 	ns->data = retain(data);
 	ns->next = NULL;
 	
-	if (list == NULL) {
+	if (list == NULL)
 		list = ns;
-	}
 	else {
 		LinkedList *tmp = list;
 		while (tmp->next != NULL) {
@@ -34,18 +36,17 @@ LinkedList *linkedListAppendData(LinkedList *list, void *data) {
 	return list;
 }
 
-LinkedList *deletePointList(LinkedList *list) {
-	if (list == NULL) {
-		return NULL;
-	}
+static void _LinkedListDestroy(void *l) {
+	LinkedList *restrict list = l;
+	if (list == NULL)
+		return;
 	
 	while (list != NULL) {
 		LinkedList *tmp = list;
-		release(list->data);
+		release(tmp->data);
 		list = list->next;
 		release(tmp);
 		tmp = NULL;
 	}
-	return NULL;
+	return;
 }
-

@@ -14,7 +14,8 @@ struct _memory_management_attributes _objectPrototype = {
 	0,
 	PTHREAD_MUTEX_INITIALIZER,
 	retain,
-	release
+	release,
+	NULL
 };
 
 void *retain(void *o) {
@@ -34,12 +35,14 @@ void release(void *o) {
 	if (NULL == object)
 		return;
 	
-	pthread_mutex_lock(&(object->lock));
-	if ( --(object->retainCount) <= 0) {
-		if (NULL != object->destroy)
-			object->destroy(object);
-		else
+	pthread_mutex_t *lock = &(object->lock);
+	pthread_mutex_lock(lock);
+		if ( --(object->retainCount) <= 0) {
+			if (NULL != object->destroy)
+				object->destroy(object);
+			pthread_mutex_unlock(lock);
 			free(object);
-	}
-	pthread_mutex_unlock(&(object->lock));
+			return;
+		}
+	pthread_mutex_unlock(lock);
 }

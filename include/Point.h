@@ -12,6 +12,8 @@
 
 #include "memory_management.h"
 
+typedef struct _point Point;
+
 /*!
  * Point
  *
@@ -19,10 +21,10 @@
  * par son numéro de réseau suivi de son
  * numéro de point.
  */
-typedef struct _point {
-	struct _memory_management_attributes isa;
+struct _point {
+	struct _memory_management_attributes isa; /* Memory management */
 	int x, y;	/* Coordonnées du point */
-} Point;
+};
 
 
 #pragma mark -

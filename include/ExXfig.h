@@ -13,9 +13,6 @@
 #include <stdio.h>
 #include "Point.h"
 #include "LinkedList.h"
-//#include "LinkedList.h"
-//#include "NetList.h"
-//#include "Graph.h"
 
 /**
  * Xfig Format (.fig)
@@ -36,7 +33,7 @@
  * 2	Rectangle
  * 4	Text
  */
-typedef enum xfig_type {
+typedef enum _xfig_type {
 	XFTypeEllipse	=1,
 	XFTypeLine		=2,
 	XFTypeText		=4
@@ -48,7 +45,7 @@ typedef enum xfig_type {
  * 2	Rectangle
  * 3	Polygone
  */
-typedef enum xfig_line_subtype {
+typedef enum _xfig_line_subtype {
 	XFLineSubtypeLine		=1,
 	XFLineSubtypeRectangle	=2,
 	XFLineSubtypePolygone	=3
@@ -59,7 +56,7 @@ typedef enum xfig_line_subtype {
  * 2	Ellipse
  * 4	Cycle
  */
-typedef enum xfig_ellipse_subtype {
+typedef enum _xfig_ellipse_subtype {
 	XFEllipseSubtypeEllipse	=2,
 	XFEllipseSubtypeCycle	=4
 } XFEllipseSubtype;
@@ -84,7 +81,7 @@ typedef enum xfig_ellipse_subtype {
  *	27-30	pink	level
  *	31		gold
  */
-typedef enum xfig_color {
+typedef enum _xfig_color {
 	XFColorDefault	= -1,
 	XFColorBlack,
 	XFColorBlue,
@@ -128,7 +125,7 @@ typedef enum xfig_color {
  *	2		dotted
  *	3,4,5	combinasion of the above
  */
-typedef enum xfig_line_style {
+typedef enum _xfig_line_style {
 	XFLineStyleDefault	= -1,
 	XFLineStylePlain,
 	XFLineStyleDashed,
@@ -143,7 +140,7 @@ typedef enum xfig_line_style {
  * -1	NoFill
  *	20	Fill
  */
-typedef enum xfig_fill_style {
+typedef enum _xfig_fill_style {
 	XFFillStyleNoFill=-1,
 	XFFillStyleFill=20
 } XFFillStyle;
@@ -154,13 +151,13 @@ typedef enum xfig_fill_style {
  * 1	Center Alignement
  * 2	Right Alignement
  */
-typedef enum xfig_text_alignement {
+typedef enum _xfig_text_alignement {
 	XFTextAlignementLeft=0,
 	XFTextAlignementCenter,
 	XFTextAlignementRight
 } XFTextAlignement;
 
-typedef enum xfig_latex_text_fonts {
+typedef enum _xfig_latex_text_fonts {
 	XFTextFontDefault=0,
 	XFTextFontRoman,
 	XFTextFontItalic,
@@ -168,7 +165,8 @@ typedef enum xfig_latex_text_fonts {
 	XFTextFontTypewriter
 } XFTextFont;
 
-typedef struct xfigObject {
+struct _xfigObject {
+	struct _memory_management_attributes isa;
 	XFType type;		/*
 						 * 1 ellipse
 						 * 2 line
@@ -228,13 +226,16 @@ typedef struct xfigObject {
 	short flag;						/* 4 */
 	short height;					/* e.g. 90 */
 	short width;					/* e.g. 90 */
-		/* Coordinates */
+	
+	/* Coordinates */
 	Point *startPoint;
 	char *text;
 	
 	LinkedList *list;
 	
-} Xfig;
+};
+
+typedef struct _xfigObject Xfig;
 
 
 
@@ -242,9 +243,7 @@ typedef struct xfigObject {
  * Xfig Functions
  */
 
-void cree_xfig(const char *nom);
-
-Xfig *XFcreateCycle(XFLineStyle lineStyle,
+Xfig *XFCreateCycle(XFLineStyle lineStyle,
 				   short thickness,
 				   XFColor color,
 				   XFColor fillColor,
@@ -254,7 +253,7 @@ Xfig *XFcreateCycle(XFLineStyle lineStyle,
 				   const Point *center,
 				   short ray);
 
-Xfig *XFcreateEllipse(XFLineStyle lineStyle,
+Xfig *XFCreateEllipse(XFLineStyle lineStyle,
 					short thickness,
 					XFColor color,
 					XFColor fillColor,
@@ -269,7 +268,7 @@ Xfig *XFcreateEllipse(XFLineStyle lineStyle,
  * The number of arguments passed in parameters in ... must be 
  * terminated by NULL and must be equal to numberOfPoints.
  */
-Xfig *XFcreateLine(XFLineStyle lineStyle,
+Xfig *XFCreateLine(XFLineStyle lineStyle,
 				 short thickness,
 				 XFColor color,
 				 XFColor fillColor,
@@ -280,7 +279,7 @@ Xfig *XFcreateLine(XFLineStyle lineStyle,
 				 short numberOfPoints,
 				 ...);
 
-Xfig *XFcreateRectangle(XFLineStyle lineStyle,
+Xfig *XFCreateRectangle(XFLineStyle lineStyle,
 					  short thickness,
 					  XFColor color,
 					  XFColor fillColor,
@@ -295,7 +294,7 @@ Xfig *XFcreateRectangle(XFLineStyle lineStyle,
  * The number of arguments passed in parameters in ... must be 
  * terminated by NULL and must be equal to numberOfPoints.
  */
-Xfig *XFcreatePolygone(XFLineStyle lineStyle,
+Xfig *XFCreatePolygone(XFLineStyle lineStyle,
 					 short thickness,
 					 XFColor color,
 					 XFColor fillColor,
@@ -303,34 +302,19 @@ Xfig *XFcreatePolygone(XFLineStyle lineStyle,
 					 float dotSpace, 
 					 ...);
 
-Xfig *XFcreateTexte(XFTextAlignement alignement,
+Xfig *XFCreateText(XFTextAlignement alignement,
 				  XFColor color,
 				  XFTextFont font,
 				  short fontSize,
 				  float angle,
 				  short height,
 				  short width,
-				  const Point *startPoint,
+				  Point *startPoint,
 				  const char *text);
 
-void *XFdeleteXfig(void *xfig); /* Release the memory of a Xfig object */
-void XFwritePrealamble(FILE *flux); /* Writes the Xfig format prealamble in the FILE* flux */
-//void XFwriteListOfXfig(LinkedList list, FILE *flux); /* Writes a LinkedList containing Xfig objects to flux. */
-void XFwrite(FILE *flux, const Xfig* xfig); /* Write any Xfig object to flux. */
-
-
-/**
- * Project's Specific Functions
- */
-
-/* Paints the NetList* in tje FILE *flux */
-//void XFwriteNetList(FILE *flux, const NetList *netlist);
-
-/* Paints the Graph* in tje FILE *flux */
-//void XFwriteGraph(FILE *flux, const Graph *graph);
-
-/* Paints the intersection of painting of a NetList* and a Graph* */
-//void XFwriteNetlistAndGraph(FILE *flux, const NetList *netlist, const Graph *graph);
+void XFWritePrealamble(FILE *flux); /* Writes the Xfig format prealamble in the FILE* flux */
+void XFWriteListOfXfig(LinkedList *restrict list, FILE *flux); /* Writes a LinkedList containing Xfig objects to flux. */
+void XFWrite(FILE *flux, const Xfig*restrict xfig); /* Write any Xfig object to flux. */
 
 #endif
 
