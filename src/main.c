@@ -59,6 +59,6 @@ void testLinkedList() {
 	release(list->data);
 	release(point);
 	release(list);
-	puts("testPoint -- successfull");
+	puts("testLinkedList -- successfull");
 }
 

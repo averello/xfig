@@ -41,7 +41,7 @@ void release(void *o) {
 			if (NULL != object->destroy)
 				object->destroy(object);
 			pthread_mutex_unlock(lock);
-			free(object);
+			free(o);
 			return;
 		}
 	pthread_mutex_unlock(lock);
