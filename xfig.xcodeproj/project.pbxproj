@@ -6,12 +6,68 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DE77A31A1809611D003C281D /* ExXfig.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3191809611D003C281D /* ExXfig.h */; };
+		DE77A31C18096124003C281D /* ExXfig.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A31B18096124003C281D /* ExXfig.c */; };
+		DE77A326180961EE003C281D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A325180961EE003C281D /* main.c */; };
+		DE77A328180961EE003C281D /* xfi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE77A327180961EE003C281D /* xfi.1 */; };
+		DE77A32F180962E9003C281D /* Point.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A32E180962E9003C281D /* Point.h */; };
+		DE77A331180962EE003C281D /* Point.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A330180962EE003C281D /* Point.c */; };
+		DE77A3331809639A003C281D /* memory_management.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3321809639A003C281D /* memory_management.h */; };
+		DE77A335180964F2003C281D /* memory_management.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A334180964F2003C281D /* memory_management.c */; };
+		DE77A3371809690B003C281D /* LinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = DE77A3361809690B003C281D /* LinkedList.h */; };
+		DE77A33918096989003C281D /* LinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = DE77A33818096989003C281D /* LinkedList.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE77A32C180961F8003C281D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE77A30118095FBD003C281D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE77A30818095FBD003C281D;
+			remoteInfo = xfig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DE77A321180961EE003C281D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				DE77A328180961EE003C281D /* xfi.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		DE77A30918095FBD003C281D /* libxfig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxfig.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE77A3151809603B003C281D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		DE77A3191809611D003C281D /* ExXfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExXfig.h; path = include/ExXfig.h; sourceTree = "<group>"; };
+		DE77A31B18096124003C281D /* ExXfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ExXfig.c; path = src/ExXfig.c; sourceTree = "<group>"; };
+		DE77A31D180961CD003C281D /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
+		DE77A323180961EE003C281D /* xfi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xfi; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE77A325180961EE003C281D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		DE77A327180961EE003C281D /* xfi.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xfi.1; sourceTree = "<group>"; };
+		DE77A32E180962E9003C281D /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		DE77A330180962EE003C281D /* Point.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Point.c; sourceTree = "<group>"; };
+		DE77A3321809639A003C281D /* memory_management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory_management.h; path = include/memory_management.h; sourceTree = "<group>"; };
+		DE77A334180964F2003C281D /* memory_management.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = memory_management.c; path = src/memory_management.c; sourceTree = "<group>"; };
+		DE77A3361809690B003C281D /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedList.h; path = include/LinkedList.h; sourceTree = "<group>"; };
+		DE77A33818096989003C281D /* LinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LinkedList.c; path = src/LinkedList.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DE77A30618095FBD003C281D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE77A320180961EE003C281D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -24,6 +80,8 @@
 		DE77A30018095FBD003C281D = {
 			isa = PBXGroup;
 			children = (
+				DE77A3101809602B003C281D /* Files */,
+				DE77A324180961EE003C281D /* xfi */,
 				DE77A30A18095FBD003C281D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -32,8 +90,51 @@
 			isa = PBXGroup;
 			children = (
 				DE77A30918095FBD003C281D /* libxfig.a */,
+				DE77A323180961EE003C281D /* xfi */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DE77A3101809602B003C281D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE77A317180960F1003C281D /* include */,
+				DE77A318180960F8003C281D /* src */,
+				DE77A3151809603B003C281D /* Makefile */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
+		DE77A317180960F1003C281D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DE77A32E180962E9003C281D /* Point.h */,
+				DE77A3191809611D003C281D /* ExXfig.h */,
+				DE77A3321809639A003C281D /* memory_management.h */,
+				DE77A3361809690B003C281D /* LinkedList.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		DE77A318180960F8003C281D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DE77A330180962EE003C281D /* Point.c */,
+				DE77A31B18096124003C281D /* ExXfig.c */,
+				DE77A31D180961CD003C281D /* main.c */,
+				DE77A334180964F2003C281D /* memory_management.c */,
+				DE77A33818096989003C281D /* LinkedList.c */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		DE77A324180961EE003C281D /* xfi */ = {
+			isa = PBXGroup;
+			children = (
+				DE77A325180961EE003C281D /* main.c */,
+				DE77A327180961EE003C281D /* xfi.1 */,
+			);
+			path = xfi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -43,6 +144,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE77A31A1809611D003C281D /* ExXfig.h in Headers */,
+				DE77A3371809690B003C281D /* LinkedList.h in Headers */,
+				DE77A32F180962E9003C281D /* Point.h in Headers */,
+				DE77A3331809639A003C281D /* memory_management.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +171,24 @@
 			productReference = DE77A30918095FBD003C281D /* libxfig.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		DE77A322180961EE003C281D /* xfi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE77A329180961EE003C281D /* Build configuration list for PBXNativeTarget "xfi" */;
+			buildPhases = (
+				DE77A31F180961EE003C281D /* Sources */,
+				DE77A320180961EE003C281D /* Frameworks */,
+				DE77A321180961EE003C281D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE77A32D180961F8003C281D /* PBXTargetDependency */,
+			);
+			name = xfi;
+			productName = xfi;
+			productReference = DE77A323180961EE003C281D /* xfi */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -88,6 +211,7 @@
 			projectRoot = "";
 			targets = (
 				DE77A30818095FBD003C281D /* xfig */,
+				DE77A322180961EE003C281D /* xfi */,
 			);
 		};
 /* End PBXProject section */
@@ -97,10 +221,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE77A33918096989003C281D /* LinkedList.c in Sources */,
+				DE77A331180962EE003C281D /* Point.c in Sources */,
+				DE77A31C18096124003C281D /* ExXfig.c in Sources */,
+				DE77A335180964F2003C281D /* memory_management.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE77A31F180961EE003C281D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE77A326180961EE003C281D /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE77A32D180961F8003C281D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE77A30818095FBD003C281D /* xfig */;
+			targetProxy = DE77A32C180961F8003C281D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DE77A30B18095FBD003C281D /* Debug */ = {
@@ -187,6 +331,24 @@
 			};
 			name = Release;
 		};
+		DE77A32A180961EE003C281D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DE77A32B180961EE003C281D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -204,6 +366,14 @@
 			buildConfigurations = (
 				DE77A30E18095FBD003C281D /* Debug */,
 				DE77A30F18095FBD003C281D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DE77A329180961EE003C281D /* Build configuration list for PBXNativeTarget "xfi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE77A32A180961EE003C281D /* Debug */,
+				DE77A32B180961EE003C281D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
