@@ -10,7 +10,6 @@
 #ifndef _ExXfig_
 #define _ExXfig_
 
-#include <stdio.h>
 #include "Point.h"
 #include "LinkedList.h"
 
@@ -172,7 +171,7 @@ struct _xfigObject {
 						 * 2 line
 						 * 4 text
 						 */
-						 
+	
 	short subtype;		/*
 						 * 1.2	ellipse
 						 * 1.4	circle
@@ -197,9 +196,9 @@ struct _xfigObject {
 	short fixedData;	/* 0 */
 	
 	XFFillStyle fillType;		/*
-						 * -1	noFill
-						 * 20	plenty and black
-						 */
+								 * -1	noFill
+								 * 20	plenty and black
+								 */
 	
 	float dotSpace;		/* 4.000 | 0.000 for a line */
 	
@@ -207,12 +206,12 @@ struct _xfigObject {
 	
 	/* Ellipse */
 	short direction;	/* 1 */
-		/* Center Coordinates */
+	/* Center Coordinates */
 	Point *center;
-		/* Rays of the ellipse */
-	short verticalRay;	
+	/* Rays of the ellipse */
+	short verticalRay;
 	short horizontalRay;
-
+	
 	/* Line */
 	int endArrow;					/* 1 yes, 0 no */
 	int startArrow;				/* 1 yes, 0 no */
@@ -244,16 +243,6 @@ typedef struct _xfigObject Xfig;
  */
 
 Xfig *XFCreateCycle(XFLineStyle lineStyle,
-				   short thickness,
-				   XFColor color,
-				   XFColor fillColor,
-				   XFFillStyle fillType,
-				   float dotSpace,
-				   float angle,
-				   const Point *center,
-				   short ray);
-
-Xfig *XFCreateEllipse(XFLineStyle lineStyle,
 					short thickness,
 					XFColor color,
 					XFColor fillColor,
@@ -261,56 +250,67 @@ Xfig *XFCreateEllipse(XFLineStyle lineStyle,
 					float dotSpace,
 					float angle,
 					const Point *center,
-					short rayH,
-					short rayV);
+					short ray);
 
-/*
- * The number of arguments passed in parameters in ... must be 
- * terminated by NULL and must be equal to numberOfPoints.
- */
-Xfig *XFCreateLine(XFLineStyle lineStyle,
-				 short thickness,
-				 XFColor color,
-				 XFColor fillColor,
-				 XFFillStyle fillType,
-				 float dotSpace,
-				 int startArrow,
-				 int endArrow,
-				 short numberOfPoints,
-				 ...);
-
-Xfig *XFCreateRectangle(XFLineStyle lineStyle,
+Xfig *XFCreateEllipse(XFLineStyle lineStyle,
 					  short thickness,
 					  XFColor color,
 					  XFColor fillColor,
 					  XFFillStyle fillType,
-					  float dotSpace, 
-					  Point *p1,
-					  Point *p2,
-					  Point *p3,
-					  Point *p4);
+					  float dotSpace,
+					  float angle,
+					  const Point *center,
+					  short rayH,
+					  short rayV);
 
 /*
- * The number of arguments passed in parameters in ... must be 
+ * The number of arguments passed in parameters in ... must be
+ * terminated by NULL and must be equal to numberOfPoints.
+ */
+Xfig *XFCreateLine(XFLineStyle lineStyle,
+				   short thickness,
+				   XFColor color,
+				   XFColor fillColor,
+				   XFFillStyle fillType,
+				   float dotSpace,
+				   int startArrow,
+				   int endArrow,
+				   short numberOfPoints,
+				   ...);
+
+Xfig *XFCreateRectangle(XFLineStyle lineStyle,
+						short thickness,
+						XFColor color,
+						XFColor fillColor,
+						XFFillStyle fillType,
+						float dotSpace,
+						Point *p1,
+						Point *p2,
+						Point *p3,
+						Point *p4);
+
+/*
+ * The number of arguments passed in parameters in ... must be
  * terminated by NULL and must be equal to numberOfPoints.
  */
 Xfig *XFCreatePolygone(XFLineStyle lineStyle,
-					 short thickness,
-					 XFColor color,
-					 XFColor fillColor,
-					 XFFillStyle fillType,
-					 float dotSpace, 
-					 ...);
+					   short thickness,
+					   XFColor color,
+					   XFColor fillColor,
+					   XFFillStyle fillType,
+					   float dotSpace,
+					   ...);
 
 Xfig *XFCreateText(XFTextAlignement alignement,
-				  XFColor color,
-				  XFTextFont font,
-				  short fontSize,
-				  float angle,
-				  short height,
-				  short width,
-				  Point *startPoint,
-				  const char *text);
+				   XFColor color,
+				   XFTextFont font,
+				   short fontSize,
+				   float angle,
+				   short height,
+				   short width,
+				   Point *startPoint,
+				   const char *text,
+				   size_t length);
 
 void XFWritePrealamble(FILE *flux); /* Writes the Xfig format prealamble in the FILE* flux */
 void XFWriteListOfXfig(LinkedList *restrict list, FILE *flux); /* Writes a LinkedList containing Xfig objects to flux. */

@@ -7,10 +7,13 @@
  *
  */
 
-#include "ExXfig.h"
-#include <stdarg.h>
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
+
+#include "ExXfig.h"
 
 static const char *const __prealamble = "#FIG 3.2\nLandscape\nCenter\nMetric\nA4\n100.00\nSingle\n-2\n1200 2\n";
 
@@ -31,46 +34,46 @@ static void XFWritePolygone(FILE *flux, const Xfig *restrict polygone);
 static void XFWriteText(FILE *flux, const Xfig *restrict text);
 static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l);
 
-void cree_xfig(const char *nom){
-	int * tabcol, epais, couleur;
-	int x1,x2,y1,y2, diam;
-	
-	tabcol=(int*) calloc(sizeof(int), 16);
-	
-	tabcol[1]=1;  // bleu
-	tabcol[2]=2;  // vert
-	tabcol[3]=4;  // rouge
-	tabcol[4]=5;  // magenta
-	tabcol[5]=31; // gold
-	tabcol[6]=24; // marron
-	tabcol[7]=8;  // bleu fonce
-	tabcol[8]=26; // marron clair
-	tabcol[9]=6;  // jaune
-	tabcol[10]=27;// rose 
-	tabcol[11]=21;// magenta fonce
-	tabcol[12]=12;// vert fonce
-
-	FILE *F=fopen(nom,"w");
-	fprintf(F, "%s", __prealamble);
-	
-	epais=1;
-	couleur=tabcol[3];
-	x1=10; y1=20;
-	x2=150; y2=20;
-	diam=5;
-	// Dessine deux ronds pleins noirs
-	fprintf(F,"1 4 0 1 0 0 99 0 -1 0.000 1 0.0000 %d %d %d %d 2047 967 2273 967\n",x1,y1,diam,diam);
-	
-	fprintf(F,"1 4 0 1 0 0 99 0 -1 0.000 1 0.0000 %d %d %d %d 2047 967 2273 967\n",x2,y2,diam,diam);
-	
-	// Dessine un trait
-	
-	fprintf(F,"2 1 0 %d %d 7 100 0 -1 0.000 0 0 -1 0 0 2\n",epais, couleur );
-	fprintf(F,"	 %d %d %d %d\n", x1, y1, x2, y2);
-	
-	fclose(F);
-	
-}
+//void cree_xfig(const char *nom){
+//	int * tabcol, epais, couleur;
+//	int x1,x2,y1,y2, diam;
+//	
+//	tabcol=(int*) calloc(sizeof(int), 16);
+//	
+//	tabcol[1]=1;  // bleu
+//	tabcol[2]=2;  // vert
+//	tabcol[3]=4;  // rouge
+//	tabcol[4]=5;  // magenta
+//	tabcol[5]=31; // gold
+//	tabcol[6]=24; // marron
+//	tabcol[7]=8;  // bleu fonce
+//	tabcol[8]=26; // marron clair
+//	tabcol[9]=6;  // jaune
+//	tabcol[10]=27;// rose 
+//	tabcol[11]=21;// magenta fonce
+//	tabcol[12]=12;// vert fonce
+//
+//	FILE *F=fopen(nom,"w");
+//	fprintf(F, "%s", __prealamble);
+//	
+//	epais=1;
+//	couleur=tabcol[3];
+//	x1=10; y1=20;
+//	x2=150; y2=20;
+//	diam=5;
+//	// Dessine deux ronds pleins noirs
+//	fprintf(F,"1 4 0 1 0 0 99 0 -1 0.000 1 0.0000 %d %d %d %d 2047 967 2273 967\n",x1,y1,diam,diam);
+//	
+//	fprintf(F,"1 4 0 1 0 0 99 0 -1 0.000 1 0.0000 %d %d %d %d 2047 967 2273 967\n",x2,y2,diam,diam);
+//	
+//	// Dessine un trait
+//	
+//	fprintf(F,"2 1 0 %d %d 7 100 0 -1 0.000 0 0 -1 0 0 2\n",epais, couleur );
+//	fprintf(F,"	 %d %d %d %d\n", x1, y1, x2, y2);
+//	
+//	fclose(F);
+//	
+//}
 
 static Xfig *__createXfig() {
 	Xfig *restrict xfig = calloc(sizeof(Xfig), 1);
@@ -259,7 +262,7 @@ Xfig *XFCreatePolygone(XFLineStyle lineStyle, short thickness, XFColor color, XF
 	
 }
 
-Xfig *XFCreateTexte(XFTextAlignement alignement, XFColor color, XFTextFont font, short fontSize, float angle, short height, short width, Point *startPoint, const char *text) {
+Xfig *XFCreateText(XFTextAlignement alignement, XFColor color, XFTextFont font, short fontSize, float angle, short height, short width, Point *startPoint, const char *text, size_t length) {
 	Xfig *restrict textO = __createXfig();
 	if (textO == NULL)
 		return NULL;
@@ -276,7 +279,7 @@ Xfig *XFCreateTexte(XFTextAlignement alignement, XFColor color, XFTextFont font,
 	textO->height		= height;
 	textO->width		= width;
 	textO->startPoint	= retain(startPoint);
-	textO->text			= strdup(text);
+	textO->text			= strndup(text, length);
 	textO->center		= NULL;
 	
 	return textO;
@@ -437,7 +440,7 @@ static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l) 
  * Public API
  */
 
-void XFwrite(FILE *flux, const Xfig*restrict xfig) {
+void XFWrite(FILE *flux, const Xfig*restrict xfig) {
 	switch (xfig->type) {
 		case XFTypeEllipse:
 			switch (xfig->subtype) {
@@ -484,7 +487,7 @@ void XFWriteListOfXfig(LinkedList *restrict list, FILE *flux) {
 	LinkedList *restrict l = list;
 	while (l != NULL) {
 		Xfig *xfig = l->data;
-		XFwrite(flux, xfig);
+		XFWrite(flux, xfig);
 		l = l->next;
 	}
 }
