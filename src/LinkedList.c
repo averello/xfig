@@ -45,7 +45,8 @@ static void _LinkedListDestroy(void *l) {
 		LinkedList *tmp = list;
 		release(tmp->data);
 		list = list->next;
-		release(tmp);
+		if (tmp != l)
+			release(tmp);
 		tmp = NULL;
 	}
 	return;
