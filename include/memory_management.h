@@ -9,6 +9,8 @@
 #ifndef xfig_memory_management_h
 #define xfig_memory_management_h
 
+#define _XOPEN_SOURCE 700
+
 #include <pthread.h>
 
 struct _memory_management_attributes {
