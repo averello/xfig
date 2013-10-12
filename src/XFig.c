@@ -216,11 +216,14 @@ XFig *XFCreateRectangle(XFLineStyle lineStyle, short thickness, XFColor color, X
 	rectangle->list				= NULL;
 	rectangle->text				= NULL;
 	
-	rectangle->list = linkedListAppendData(rectangle->list, p1);
-	rectangle->list = linkedListAppendData(rectangle->list, p2);
-	rectangle->list = linkedListAppendData(rectangle->list, p3);
-	rectangle->list = linkedListAppendData(rectangle->list, p4);
-	rectangle->list = linkedListAppendData(rectangle->list, p1);
+	Point *point1 = createPoint(p1->x, p1->y), *point2 = createPoint(p2->x, p2->y), *point3 = createPoint(p3->x, p3->y), *point4 = createPoint(p4->x, p4->y);
+	rectangle->list = linkedListAppendData(rectangle->list, point1);
+	rectangle->list = linkedListAppendData(rectangle->list, point2);
+	rectangle->list = linkedListAppendData(rectangle->list, point3);
+	rectangle->list = linkedListAppendData(rectangle->list, point4);
+	rectangle->list = linkedListAppendData(rectangle->list, point1);
+
+	release(point1), release(point2), release(point3), release(point4);
 	
 	return rectangle;
 }
@@ -278,7 +281,7 @@ XFig *XFCreateText(XFTextAlignement alignement, XFColor color, XFTextFont font, 
 	textO->flag			= XFIG_TEXT_FLAG;
 	textO->height		= height;
 	textO->width		= width;
-	textO->startPoint	= retain(startPoint);
+	textO->startPoint	= createPoint(startPoint->x, startPoint->y);
 	textO->text			= strndup(text, length);
 	textO->center		= NULL;
 	

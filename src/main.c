@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <assert.h>
-#include "ExXfig.h"
+#include "XFig.h"
 
 
 typedef void(*FunctionPointer)(void);
@@ -41,7 +41,7 @@ void testPoint() {
 	assert(point->y == 5);
 	
 	release(point);
-	puts("testPoint -- successfull");
+	printf("%s -- successfull\n", __FUNCTION__);
 }
 
 void testLinkedList() {
@@ -58,11 +58,23 @@ void testLinkedList() {
 	release(point);
 
 	release(list);
-	puts("testLinkedList -- successfull");
+	printf("%s -- successfull\n", __FUNCTION__);
 }
 
 void testXfig() {
-	Xfig *xfig;
+	FILE *xfigFile = fopen("test.fig", "w");
+	assert(NULL != xfigFile);
+	Point *cycleCenter = createPoint(200, 200);
+	XFig *xfig = XFCreateCycle(XFLineStyleDefault, 1, XFColorBlack, XFColorRed, XFFillStyleFill, 0.0f, 0.0f, cycleCenter, 100);
+
+	XFWritePrealamble(xfigFile);
+	XFWrite(xfigFile, xfig);
+
+	assert(NULL != xfig);
+	release(cycleCenter);
+	release(xfig);
+	fclose(xfigFile);
+	printf("%s -- successfull\n", __FUNCTION__);
 }
 
 

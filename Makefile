@@ -37,7 +37,7 @@ all: directories compileall
 TEST1 = main
 test1: directories libstatic ${BIN}/${TEST1}
 	@echo "**** Testing ${TEST1}"
-	@${BIN}/${TEST5}
+	@${BIN}/${TEST1}
 	@echo "---- end of ${TEST1}"
 
 

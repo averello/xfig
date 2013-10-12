@@ -160,3 +160,4 @@ xcuserdata
 *.o
 *.a
 bin/*
+*.fig
