@@ -1,5 +1,5 @@
 /*
- *  ExXfig.c
+ *  XFig.c
  *  Via Minimization
  *
  *  Created by George Boumis on 26/03/2011.
@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "ExXfig.h"
+#include "XFig.h"
 
 static const char *const __prealamble = "#FIG 3.2\nLandscape\nCenter\nMetric\nA4\n100.00\nSingle\n-2\n1200 2\n";
 

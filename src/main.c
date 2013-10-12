@@ -62,7 +62,7 @@ void testLinkedList() {
 }
 
 void testXfig() {
-
+	Xfig *xfig;
 }
 
 

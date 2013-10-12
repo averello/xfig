@@ -1,5 +1,5 @@
 /*
- *  ExXfig.h
+ *  XFig.h
  *  Via Minimization
  *
  *  Created by George Boumis on 26/03/2011.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef _ExXfig_
-#define _ExXfig_
+#ifndef _XFig_
+#define _XFig_
 
 #include "Point.h"
 #include "LinkedList.h"
@@ -317,3 +317,4 @@ void XFWriteListOfXFig(LinkedList *restrict list, FILE *flux); /* Writes a Linke
 void XFWrite(FILE *flux, const XFig*restrict xfig); /* Write any Xfig object to flux. */
 
 #endif
+
