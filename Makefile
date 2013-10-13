@@ -73,7 +73,7 @@ ${BIN}/% : ${OBJ}/%.o
 $(BIN)/main : $(OBJ)/main.o libstatic
 	$(CC) $(OUTPUT_OPTION) $< $(LDFLAGS)
 
-${LIB}/lib${LIB_NAME}.a : $(OBJ)/memory_management.o $(OBJ)/Point.o $(OBJ)/LinkedList.o $(OBJ)/ExXfig.o
+${LIB}/lib${LIB_NAME}.a : $(OBJ)/memory_management.o $(OBJ)/Point.o $(OBJ)/LinkedList.o $(OBJ)/XFig.o
 	${AR} r ${LIB}/lib${LIB_NAME}.a $?
 
 
