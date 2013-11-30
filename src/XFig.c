@@ -79,9 +79,8 @@ static XFig *__createXFig() {
 	XFig *restrict xfig = calloc(sizeof(XFig), 1);
 	if (xfig == NULL)
 		return NULL;
-	xfig->isa = _objectPrototype;
-	memory_management_attributes_set_dealloc_function(&(xfig->isa), XFDeleteXFig);
-//	xfig->isa.destroy = XFDeleteXFig;
+	MEMORY_MANAGEMENT_INITIALIZE(xfig);
+	memory_management_attributes_set_dealloc_function(xfig, XFDeleteXFig);
 	return xfig;
 
 }

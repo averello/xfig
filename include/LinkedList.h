@@ -9,7 +9,7 @@
 #ifndef xfig_LinkedList_h
 #define xfig_LinkedList_h
 
-#include "memory_management.h"
+#include <memory_management/memory_management.h>
 
 typedef struct _linkedList LinkedList;
 
@@ -18,7 +18,7 @@ typedef struct _linkedList LinkedList;
  * A list of Points.
  */
 struct _linkedList {
-	struct _memory_management_attributes isa;
+	MEMORY_MANAGEMENT_ENABLE();
 	void *data;
 	LinkedList *next;
 };

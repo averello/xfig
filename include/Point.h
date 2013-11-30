@@ -10,7 +10,7 @@
 #ifndef _POINT_
 #define _POINT_
 
-#include "memory_management.h"
+#include "memory_management/memory_management.h"
 
 typedef struct _point Point;
 
@@ -22,7 +22,7 @@ typedef struct _point Point;
  * numéro de point.
  */
 struct _point {
-	struct _memory_management_attributes isa; /* Memory management */
+	MEMORY_MANAGEMENT_ENABLE(); /* Memory management */
 	int x, y;	/* Coordonnées du point */
 };
 

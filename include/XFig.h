@@ -165,7 +165,7 @@ typedef enum _xfig_latex_text_fonts {
 } XFTextFont;
 
 struct _xfigObject {
-	struct _memory_management_attributes isa;
+	MEMORY_MANAGEMENT_ENABLE();
 	XFType type;		/*
 						 * 1 ellipse
 						 * 2 line

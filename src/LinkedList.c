@@ -17,9 +17,8 @@ LinkedList *linkedListAppendData(LinkedList *list, void *data) {
 	if (NULL == ns)
 		return NULL;
 	
-	ns->isa = _objectPrototype;
-	memory_management_attributes_set_dealloc_function(&(ns->isa), _LinkedListDestroy);
-//	ns->isa.destroy = _LinkedListDestroy;
+	MEMORY_MANAGEMENT_INITIALIZE(ns);
+	memory_management_attributes_set_dealloc_function(ns, _LinkedListDestroy);
 	
 	ns->data = retain(data);
 	ns->next = NULL;

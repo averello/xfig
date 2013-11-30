@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -g3 -pedantic -std=c99 -I${INC} -D_XOPEN_SOURCE=700
-LDFLAGS = -L$(LIB) -lxfig
+CFLAGS_PRIV = -Wall -Wextra -g3 -pedantic -std=c99 -I${INC} -D_XOPEN_SOURCE=700 $(CFLAGS)
+LDFLAGS_PRIV = -L$(LIB) -lxfig $(LDFLAGS)
 BIN = bin
 INC = include
 OBJ = obj
@@ -65,13 +65,13 @@ ${LIB}:
 # +------------------------------+
 
 ${OBJ}/%.o : ${SRC}/%.c
-	$(CC) -c -o $@ $< ${CFLAGS}
+	$(CC) -c -o $@ $< ${CFLAGS_PRIV}
 
 ${BIN}/% : ${OBJ}/%.o
-	${CC} -o $@ $< ${LDFLAGS}
+	${CC} -o $@ $< ${LDFLAGS_PRIV}
 
 $(BIN)/main : $(OBJ)/main.o libstatic
-	$(CC) $(OUTPUT_OPTION) $< $(LDFLAGS)
+	$(CC) $(OUTPUT_OPTION) $< $(LDFLAGS_PRIV)
 
 ${LIB}/lib${LIB_NAME}.a : $(OBJ)/memory_management.o $(OBJ)/Point.o $(OBJ)/LinkedList.o $(OBJ)/XFig.o
 	${AR} r ${LIB}/lib${LIB_NAME}.a $?

@@ -16,7 +16,7 @@ Point *createPoint(int x, int y) {
 	Point *restrict point = (Point *)calloc(sizeof(Point), 1);
 	if (point == NULL)
 		return NULL;
-	point->isa = _objectPrototype;
+	MEMORY_MANAGEMENT_INITIALIZE(point);
 	
 	point->x = x;
 	point->y = y;
