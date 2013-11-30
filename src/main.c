@@ -25,6 +25,8 @@ int main(int argc, const char * argv[])
 		testXfig
 	};
 	
+	printf("unsigned long long : %ld\nvoid * : %ld\ntotal: %ld\n", sizeof(unsigned long long), sizeof(void *), sizeof(unsigned long long) + 3 * sizeof(void *));
+	
 	for (int i=0; i<sizeof(tests)/sizeof(FunctionPointer); i++) {
 		tests[i]();
 	}
@@ -35,7 +37,7 @@ int main(int argc, const char * argv[])
 void testPoint() {
 	Point *point = createPoint(5, 5);
 	assert(point != NULL);
-	assert(point->isa.retainCount == 1);
+	assert(getRetainCount(point) == 1);
 	
 	assert(point->x == 5);
 	assert(point->y == 5);
@@ -48,8 +50,8 @@ void testLinkedList() {
 	Point *point = createPoint(2, 2);
 	LinkedList *list = linkedListAppendData(NULL, point);
 	assert(NULL != list);
-	assert(list->isa.retainCount == 1);
-	assert(point->isa.retainCount == 2);
+	assert(getRetainCount(list) == 1);
+	assert(getRetainCount(point) == 2);
 	assert(list->data == point);
 	release(point);
 	

@@ -17,7 +17,6 @@ Point *createPoint(int x, int y) {
 	if (point == NULL)
 		return NULL;
 	point->isa = _objectPrototype;
-	point = retain(point);
 	
 	point->x = x;
 	point->y = y;

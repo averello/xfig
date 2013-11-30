@@ -80,8 +80,8 @@ static XFig *__createXFig() {
 	if (xfig == NULL)
 		return NULL;
 	xfig->isa = _objectPrototype;
-	xfig->isa.destroy = XFDeleteXFig;
-	xfig = retain(xfig);
+	memory_management_attributes_set_dealloc_function(&(xfig->isa), XFDeleteXFig);
+//	xfig->isa.destroy = XFDeleteXFig;
 	return xfig;
 
 }

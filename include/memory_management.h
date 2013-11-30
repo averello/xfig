@@ -14,18 +14,16 @@
 #include <pthread.h>
 
 struct _memory_management_attributes {
-	unsigned long long retainCount;
-	pthread_mutex_t lock;
-	void *(*retain)(void *);
-	void (*release)(void *);
-	void (*destroy)(void *);
+	void *_opaque[8];
 };
 
 extern struct _memory_management_attributes _objectPrototype;
 
+void memory_management_attributes_set_dealloc_function(void *, void (*deallocf)(void *));
 void *retain(void *);
 void release(void *);
-void destroy(void *);
+void dealloc(void *);
+unsigned long long getRetainCount(void *);
 
 
 #endif
