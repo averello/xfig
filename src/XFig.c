@@ -76,11 +76,10 @@ static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l);
 //}
 
 static XFig *__createXFig() {
-	XFig *restrict xfig = calloc(sizeof(XFig), 1);
+	XFig *restrict xfig = MEMORY_MANAGEMENT_ALLOC(sizeof(XFig));
 	if (xfig == NULL)
 		return NULL;
-	MEMORY_MANAGEMENT_INITIALIZE(xfig);
-	memory_management_attributes_set_dealloc_function(xfig, XFDeleteXFig);
+	MEMORY_MANAGEMENT_ATTRIBUTE_SET_DEALLOC_FUNCTION(xfig, XFDeleteXFig);
 	return xfig;
 
 }

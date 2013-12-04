@@ -13,12 +13,11 @@
 static void _LinkedListDestroy(void *);
 
 LinkedList *linkedListAppendData(LinkedList *list, void *data) {
-	LinkedList *restrict ns = (LinkedList *)calloc(sizeof(LinkedList), 1);
+	LinkedList *restrict ns = (LinkedList *)MEMORY_MANAGEMENT_ALLOC(sizeof(LinkedList));
 	if (NULL == ns)
 		return NULL;
 	
-	MEMORY_MANAGEMENT_INITIALIZE(ns);
-	memory_management_attributes_set_dealloc_function(ns, _LinkedListDestroy);
+	MEMORY_MANAGEMENT_ATTRIBUTE_SET_DEALLOC_FUNCTION(ns, _LinkedListDestroy);
 	
 	ns->data = retain(data);
 	ns->next = NULL;

@@ -13,10 +13,9 @@
 #include <stdlib.h>
 
 Point *createPoint(int x, int y) {
-	Point *restrict point = (Point *)calloc(sizeof(Point), 1);
+	Point *restrict point = (Point *)MEMORY_MANAGEMENT_ALLOC(sizeof(Point));
 	if (point == NULL)
 		return NULL;
-	MEMORY_MANAGEMENT_INITIALIZE(point);
 	
 	point->x = x;
 	point->y = y;

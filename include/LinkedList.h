@@ -18,7 +18,6 @@ typedef struct _linkedList LinkedList;
  * A list of Points.
  */
 struct _linkedList {
-	MEMORY_MANAGEMENT_ENABLE();
 	void *data;
 	LinkedList *next;
 };

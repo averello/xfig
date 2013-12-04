@@ -22,7 +22,6 @@ typedef struct _point Point;
  * numéro de point.
  */
 struct _point {
-	MEMORY_MANAGEMENT_ENABLE(); /* Memory management */
 	int x, y;	/* Coordonnées du point */
 };
 
