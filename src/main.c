@@ -8,14 +8,16 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include <unistd.h>
 #include "XFig.h"
+#include <memory_management/memory_management.h>
 
 
 typedef void(*FunctionPointer)(void);
 
-void testPoint();
-void testLinkedList();
-void testXfig();
+void testPoint(void);
+void testLinkedList(void);
+void testXfig(void);
 
 int main(int argc, const char * argv[])
 {
@@ -34,7 +36,7 @@ int main(int argc, const char * argv[])
 
 
 void testPoint() {
-	Point *point = createPoint(5, 5);
+	XFigPoint *point = XFigCreatePoint(5, 5);
 	assert(point != NULL);
 	assert(MEMORY_MANAGEMENT_GET_RETAIN_COUNT(point) == 1);
 	
@@ -46,8 +48,8 @@ void testPoint() {
 }
 
 void testLinkedList() {
-	Point *point = createPoint(2, 2);
-	LinkedList *list = LinkedListAppendData(NULL, point);
+	XFigPoint *point = XFigCreatePoint(2, 2);
+	XFigLinkedList *list = XFigLinkedListAppendData(NULL, point);
 	assert(NULL != list);
 	assert(MEMORY_MANAGEMENT_GET_RETAIN_COUNT(list) == 1);
 	assert(MEMORY_MANAGEMENT_GET_RETAIN_COUNT(point) == 2);
@@ -55,8 +57,8 @@ void testLinkedList() {
 	
 	release(point);
 	
-	point = createPoint(3, 3);
-	list = LinkedListAppendData(list, point);
+	point = XFigCreatePoint(3, 3);
+	list = XFigLinkedListAppendData(list, point);
 	release(point);
 
 	release(list);
@@ -64,10 +66,20 @@ void testLinkedList() {
 }
 
 void testXfig() {
+	char cwd[BUFSIZ];
+	printf("%s\n" ,getcwd(cwd, sizeof(cwd)));
 	FILE *xfigFile = fopen("test.fig", "w");
 	assert(NULL != xfigFile);
-	Point *cycleCenter = createPoint(200, 200);
-	XFig *xfig = XFCreateCycle(XFLineStyleDefault, 1, XFColorBlack, XFColorRed, XFFillStyleFill, 0.0f, 0.0f, cycleCenter, 100);
+	XFigPoint *cycleCenter = XFigCreatePoint(200, 200);
+	XFig *xfig = XFCreateCycle(XFLineStyleDefault,
+							   1,
+							   XFColorBlack,
+							   XFColorRed,
+							   XFFillStyleFill,
+							   0.0f,
+							   0.0f,
+							   cycleCenter,
+							   100);
 
 	XFWritePrealamble(xfigFile);
 	XFWrite(xfigFile, xfig);

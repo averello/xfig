@@ -7,10 +7,10 @@
  *
  */
 
-#ifndef _POINT_
-#define _POINT_
+#ifndef _XFIG_POINT_
+#define _XFIG_POINT_
 
-typedef struct _point Point;
+typedef struct _xfig_point XFigPoint;
 
 /*!
  * Point
@@ -19,15 +19,15 @@ typedef struct _point Point;
  * par son numéro de réseau suivi de son
  * numéro de point.
  */
-struct _point {
+struct _xfig_point {
 	int x, y;	/* Coordonnées du point */
 };
 
 /*
  * Point Functions
  */
-Point	*createPoint(int x, int y);	/* Creates a pointer to a Point with coordinates x and y */
+XFigPoint *XFigCreatePoint(int x, int y);	/* Creates a pointer to a Point with coordinates x and y */
 
 
-#endif /* _POINT_ */
+#endif /* _XFIG_POINT_ */
 

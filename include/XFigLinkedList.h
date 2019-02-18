@@ -9,20 +9,20 @@
 #ifndef xfig_LinkedList_h
 #define xfig_LinkedList_h
 
-typedef struct _linkedList LinkedList;
+typedef struct _xfig_linkedList XFigLinkedList;
 
 /*
  * PointList
  * A list of Points.
  */
-struct _linkedList {
+struct _xfig_linkedList {
 	void *data;
-	LinkedList *next;
+	XFigLinkedList *next;
 };
 
 /*
  * PointList Functions
  */
-LinkedList *LinkedListAppendData(LinkedList *list, void *data);
+XFigLinkedList *XFigLinkedListAppendData(XFigLinkedList *list, void *data);
 
 #endif
