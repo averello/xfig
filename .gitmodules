@@ -1,0 +1,3 @@
+[submodule "dependencies/memorymanagement"]
+	path = dependencies/memorymanagement
+	url = https://github.com/averello/memorymanagement.git
