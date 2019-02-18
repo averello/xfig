@@ -10,8 +10,6 @@
 #ifndef _POINT_
 #define _POINT_
 
-#include "memory_management/memory_management.h"
-
 typedef struct _point Point;
 
 /*!

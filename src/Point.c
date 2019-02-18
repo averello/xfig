@@ -11,6 +11,7 @@
 #include "Point.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory_management/memory_management.h>
 
 Point *createPoint(int x, int y) {
 	Point *restrict point = (Point *)MEMORY_MANAGEMENT_ALLOC(sizeof(Point));

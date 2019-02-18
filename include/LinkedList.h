@@ -9,8 +9,6 @@
 #ifndef xfig_LinkedList_h
 #define xfig_LinkedList_h
 
-#include <memory_management/memory_management.h>
-
 typedef struct _linkedList LinkedList;
 
 /*
