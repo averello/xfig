@@ -14,6 +14,7 @@
 #include <stdarg.h>
 
 #include "XFig.h"
+#include <memory_management/memory_management.h>
 
 static const char *const __prealamble = "#FIG 3.2\nLandscape\nCenter\nMetric\nA4\n100.00\nSingle\n-2\n1200 2\n";
 
@@ -23,16 +24,16 @@ static const short XFIF_FIXED_DATA = 1;
 #define XFIG_NUMBER_OF_POINTS 5
 #define XFIG_TEXT_FLAG 4
 
-static XFig *__createXFig();
+static XFig *__createXFig(void);
 
 static void XFDeleteXFig(void *xf);
-static void XFWriteCycle(FILE *flux, const XFig *restrict cycle);
-static void XFWriteEllipse(FILE *flux, const XFig *restrict ellipse);
-static void XFWriteLine(FILE *flux, const XFig *restrict line);
-static void XFWriteRectangle(FILE *flux, const XFig *restrict rectangle);
-static void XFWritePolygone(FILE *flux, const XFig *restrict polygone);
-static void XFWriteText(FILE *flux, const XFig *restrict text);
-static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l);
+static void XFWriteCycle(FILE *const flux, const XFig *restrict const cycle);
+static void XFWriteEllipse(FILE *const flux, const XFig *restrict const ellipse);
+static void XFWriteLine(FILE *const flux, const XFig *restrict const line);
+static void XFWriteRectangle(FILE *const flux, const XFig *restrict const rectangle);
+static void XFWritePolygone(FILE *const flux, const XFig *restrict const polygone);
+static void XFWriteText(FILE *const flux, const XFig *restrict const text);
+static void XFWriteLinkedListOfPoints(FILE *const flux, const LinkedList *restrict const l);
 
 //void cree_xfig(const char *nom){
 //	int * tabcol, epais, couleur;
@@ -85,7 +86,7 @@ static XFig *__createXFig() {
 }
 
 static void XFDeleteXFig(void *xf) {
-	XFig *xfig = (XFig *)xf;
+	XFig *const xfig = (XFig *)xf;
 	xfig->list = (release(xfig->list), NULL);
 	
 	if (xfig->startPoint)
@@ -102,7 +103,15 @@ static void XFDeleteXFig(void *xf) {
  * Creating a XFig
  */
 
-XFig *XFCreateCycle(XFLineStyle lineStyle, short thickness, XFColor color, XFColor fillColor, XFFillStyle fillType, float dotSpace, float angle, const Point *center, short ray) {
+XFig *XFCreateCycle(const XFLineStyle lineStyle,
+					const short thickness,
+					const XFColor color,
+					const XFColor fillColor,
+					const XFFillStyle fillType,
+					const float dotSpace,
+					const float angle,
+					const Point *const center,
+					const short ray) {
 	XFig *restrict cycle = __createXFig();
 	if (cycle == NULL)
 		return NULL;
@@ -129,7 +138,16 @@ XFig *XFCreateCycle(XFLineStyle lineStyle, short thickness, XFColor color, XFCol
 	
 }
 
-XFig *XFCreateEllipse(XFLineStyle lineStyle, short thickness, XFColor color, XFColor fillColor, XFFillStyle fillType, float dotSpace, float angle, const Point *center, short rayH, short rayV) {
+XFig *XFCreateEllipse(const XFLineStyle lineStyle,
+					  const short thickness,
+					  const XFColor color,
+					  const XFColor fillColor,
+					  const XFFillStyle fillType,
+					  const float dotSpace,
+					  const float angle,
+					  const Point *const center,
+					  const short rayH,
+					  const short rayV) {
 	XFig *restrict ellipse = __createXFig();
 	if (ellipse == NULL)
 		return NULL;
@@ -156,7 +174,16 @@ XFig *XFCreateEllipse(XFLineStyle lineStyle, short thickness, XFColor color, XFC
 	return ellipse;
 }
 
-XFig *XFCreateLine(XFLineStyle lineStyle, short thickness, XFColor color, XFColor fillColor, XFFillStyle fillType, float dotSpace, int startArrow, int endArrow, short numberOfPoints, ...) {
+XFig *XFCreateLine(const XFLineStyle lineStyle,
+				   const short thickness,
+				   const XFColor color,
+				   const XFColor fillColor,
+				   const XFFillStyle fillType,
+				   const float dotSpace,
+				   const int startArrow,
+				   const int endArrow,
+				   const short numberOfPoints,
+				   ...) {
 	XFig *restrict line = __createXFig();
 	if (line == NULL)
 		return NULL;
@@ -183,14 +210,23 @@ XFig *XFCreateLine(XFLineStyle lineStyle, short thickness, XFColor color, XFColo
 
 	
 	while ((p = va_arg(list, Point*)) != NULL)
-		line->list = linkedListAppendData(line->list, p);
+		line->list = LinkedListAppendData(line->list, p);
 	
 	va_end(list);
 	
 	return line;
 }
 
-XFig *XFCreateRectangle(XFLineStyle lineStyle, short thickness, XFColor color, XFColor fillColor, XFFillStyle fillType, float dotSpace, Point *p1, Point *p2, Point *p3, Point *p4) {
+XFig *XFCreateRectangle(const XFLineStyle lineStyle,
+						const short thickness,
+						const XFColor color,
+						const XFColor fillColor,
+						const XFFillStyle fillType,
+						const float dotSpace,
+						const Point *const p1,
+						const Point *const p2,
+						const Point *const p3,
+						const Point *const p4) {
 	XFig *restrict rectangle = __createXFig();
 	if (rectangle == NULL)
 		return NULL;
@@ -215,18 +251,24 @@ XFig *XFCreateRectangle(XFLineStyle lineStyle, short thickness, XFColor color, X
 	rectangle->text				= NULL;
 	
 	Point *point1 = createPoint(p1->x, p1->y), *point2 = createPoint(p2->x, p2->y), *point3 = createPoint(p3->x, p3->y), *point4 = createPoint(p4->x, p4->y);
-	rectangle->list = linkedListAppendData(rectangle->list, point1);
-	rectangle->list = linkedListAppendData(rectangle->list, point2);
-	rectangle->list = linkedListAppendData(rectangle->list, point3);
-	rectangle->list = linkedListAppendData(rectangle->list, point4);
-	rectangle->list = linkedListAppendData(rectangle->list, point1);
+	rectangle->list = LinkedListAppendData(rectangle->list, point1);
+	rectangle->list = LinkedListAppendData(rectangle->list, point2);
+	rectangle->list = LinkedListAppendData(rectangle->list, point3);
+	rectangle->list = LinkedListAppendData(rectangle->list, point4);
+	rectangle->list = LinkedListAppendData(rectangle->list, point1);
 
 	release(point1), release(point2), release(point3), release(point4);
 	
 	return rectangle;
 }
 
-XFig *XFCreatePolygone(XFLineStyle lineStyle, short thickness, XFColor color, XFColor fillColor, XFFillStyle fillType, float dotSpace, ...) {
+XFig *XFCreatePolygone(const XFLineStyle lineStyle,
+					   const short thickness,
+					   const XFColor color,
+					   const XFColor fillColor,
+					   const XFFillStyle fillType,
+					   const float dotSpace,
+					   ...) {
 	
 	XFig *restrict polygone = __createXFig();
 	if (polygone == NULL)
@@ -255,7 +297,7 @@ XFig *XFCreatePolygone(XFLineStyle lineStyle, short thickness, XFColor color, XF
 	polygone->text				= NULL;
 	
 	while ((p = va_arg(list, Point*)) != NULL)
-		polygone->list = linkedListAppendData(polygone->list, p);
+		polygone->list = LinkedListAppendData(polygone->list, p);
 		
 	va_end(list);
 	
@@ -263,7 +305,16 @@ XFig *XFCreatePolygone(XFLineStyle lineStyle, short thickness, XFColor color, XF
 	
 }
 
-XFig *XFCreateText(XFTextAlignement alignement, XFColor color, XFTextFont font, short fontSize, float angle, short height, short width, Point *startPoint, const char *text, size_t length) {
+XFig *XFCreateText(const XFTextAlignement alignement,
+				   const XFColor color,
+				   const XFTextFont font,
+				   const short fontSize,
+				   const float angle,
+				   const short height,
+				   const short width,
+				   const Point *const startPoint,
+				   const char *const text,
+				   const size_t length) {
 	XFig *restrict textO = __createXFig();
 	if (textO == NULL)
 		return NULL;
@@ -290,7 +341,7 @@ XFig *XFCreateText(XFTextAlignement alignement, XFColor color, XFTextFont font, 
 /*
  * Writing
  */
-static void XFWriteCycle(FILE *flux, const XFig *restrict cycle) {
+static void XFWriteCycle(FILE *const flux, const XFig *restrict const cycle) {
 	fprintf(flux, "%u %hd %d %hd %d %d %hd %hd %d %0.3f %hd %0.3f %d %d %hd %hd 0 0 0 0\n", 
 			cycle->type,
 			cycle->subtype,
@@ -311,7 +362,7 @@ static void XFWriteCycle(FILE *flux, const XFig *restrict cycle) {
 			);
 }
 
-static void XFWriteEllipse(FILE *flux, const XFig *restrict ellipse) {
+static void XFWriteEllipse(FILE *const flux, const XFig *restrict const ellipse) {
 	fprintf(flux, "%u %hd %d %hd %d %d %hd %hd %d %0.3f %hd %0.3f %d %d %hd %hd 0 0 0 0\n", 
 			ellipse->type,
 			ellipse->subtype,
@@ -332,7 +383,7 @@ static void XFWriteEllipse(FILE *flux, const XFig *restrict ellipse) {
 			);
 }
 
-static void XFWriteLine(FILE *flux, const XFig *restrict line) {
+static void XFWriteLine(FILE *const flux, const XFig *restrict const line) {
 	fprintf(flux, "%u %hd %d %hd %d %d %hd %hd %d %0.3f 0 0 -1 %u %u %hd\n",
 			line->type,
 			line->subtype,
@@ -365,7 +416,7 @@ static void XFWriteLine(FILE *flux, const XFig *restrict line) {
 	fprintf(flux, "\n");
 }
 
-static void XFWriteRectangle(FILE *flux, const XFig *restrict rectangle) {
+static void XFWriteRectangle(FILE *const flux, const XFig *restrict const rectangle) {
 	fprintf(flux, "%u %hd %d %hd %d %d %hd %hd %d %0.3f 0 0 -1 %u %u %hd\n         ",
 			rectangle->type,
 			rectangle->subtype,
@@ -390,7 +441,7 @@ static void XFWriteRectangle(FILE *flux, const XFig *restrict rectangle) {
 	fprintf(flux, "\n");
 }
 
-static void XFWritePolygone(FILE *flux, const XFig *restrict polygone) {
+static void XFWritePolygone(FILE *const flux, const XFig *restrict const polygone) {
 	fprintf(flux, "%u %hd %d %hd %d %d %hd %hd %d %0.3f 0 0 -1 %u %u %hd\n         ",
 			polygone->type,
 			polygone->subtype,
@@ -410,7 +461,7 @@ static void XFWritePolygone(FILE *flux, const XFig *restrict polygone) {
 	fprintf(flux, "\n");
 }
 
-static void XFWriteText(FILE *flux, const XFig *restrict text) {
+static void XFWriteText(FILE *const flux, const XFig *restrict const text) {
 	fprintf(flux, "%u %d %d %hd %hd %d %hd %0.3f %hd %hd %hd %d %d %s\\001\n",
 			text->type,
 			text->alignement,
@@ -428,7 +479,7 @@ static void XFWriteText(FILE *flux, const XFig *restrict text) {
 			text->text);
 }
 
-static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l) {
+static void XFWriteLinkedListOfPoints(FILE *const flux, const LinkedList *restrict const l) {
 	const LinkedList *restrict list = l;
 	while (list != NULL) {
 		Point *restrict point = list->data;
@@ -441,7 +492,7 @@ static void XFWriteLinkedListOfPoints(FILE *flux, const LinkedList *restrict l) 
  * Public API
  */
 
-void XFWrite(FILE *flux, const XFig*restrict xfig) {
+void XFWrite(FILE *const flux, const XFig*restrict const xfig) {
 	switch (xfig->type) {
 		case XFTypeEllipse:
 			switch (xfig->subtype) {
@@ -480,14 +531,14 @@ void XFWrite(FILE *flux, const XFig*restrict xfig) {
 	}
 }
 
-void XFWritePrealamble(FILE *flux) {
+void XFWritePrealamble(FILE *const flux) {
 	fprintf(flux, "%s", __prealamble);
 }
 
-void XFWriteListOfXFig(LinkedList *restrict list, FILE *flux) {
+void XFWriteListOfXFig(LinkedList *restrict const list, FILE *const flux) {
 	LinkedList *restrict l = list;
 	while (l != NULL) {
-		XFig *xfig = l->data;
+		XFig *const xfig = l->data;
 		XFWrite(flux, xfig);
 		l = l->next;
 	}

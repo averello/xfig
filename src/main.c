@@ -47,7 +47,7 @@ void testPoint() {
 
 void testLinkedList() {
 	Point *point = createPoint(2, 2);
-	LinkedList *list = linkedListAppendData(NULL, point);
+	LinkedList *list = LinkedListAppendData(NULL, point);
 	assert(NULL != list);
 	assert(MEMORY_MANAGEMENT_GET_RETAIN_COUNT(list) == 1);
 	assert(MEMORY_MANAGEMENT_GET_RETAIN_COUNT(point) == 2);
@@ -56,7 +56,7 @@ void testLinkedList() {
 	release(point);
 	
 	point = createPoint(3, 3);
-	list = linkedListAppendData(list, point);
+	list = LinkedListAppendData(list, point);
 	release(point);
 
 	release(list);

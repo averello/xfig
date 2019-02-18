@@ -13,7 +13,7 @@
 
 static void _LinkedListDestroy(void *);
 
-LinkedList *linkedListAppendData(LinkedList *list, void *data) {
+LinkedList *LinkedListAppendData(LinkedList *list, void *data) {
 	LinkedList *restrict ns = (LinkedList *)MEMORY_MANAGEMENT_ALLOC(sizeof(LinkedList));
 	if (NULL == ns)
 		return NULL;

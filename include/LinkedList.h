@@ -23,6 +23,6 @@ struct _linkedList {
 /*
  * PointList Functions
  */
-LinkedList *linkedListAppendData(LinkedList *list, void *data);
+LinkedList *LinkedListAppendData(LinkedList *list, void *data);
 
 #endif
